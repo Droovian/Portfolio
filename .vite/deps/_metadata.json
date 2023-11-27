@@ -1,0 +1,83 @@
+{
+  "hash": "d95c1d99",
+  "browserHash": "c74c801e",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "30880a86",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "8d9f5a0c",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "6afa2f55",
+      "needsInterop": false
+    },
+    "@mui/material": {
+      "src": "../../node_modules/@mui/material/index.js",
+      "file": "@mui_material.js",
+      "fileHash": "e01f64cd",
+      "needsInterop": false
+    },
+    "@mui/material/LinearProgress": {
+      "src": "../../node_modules/@mui/material/LinearProgress/index.js",
+      "file": "@mui_material_LinearProgress.js",
+      "fileHash": "4df9365c",
+      "needsInterop": false
+    },
+    "react-scroll": {
+      "src": "../../node_modules/react-scroll/modules/index.js",
+      "file": "react-scroll.js",
+      "fileHash": "bd28637c",
+      "needsInterop": true
+    },
+    "react-icons/hi": {
+      "src": "../../node_modules/react-icons/hi/index.esm.js",
+      "file": "react-icons_hi.js",
+      "fileHash": "4038f3f2",
+      "needsInterop": false
+    },
+    "react-awesome-button": {
+      "src": "../../node_modules/react-awesome-button/dist/index.js",
+      "file": "react-awesome-button.js",
+      "fileHash": "964c7d99",
+      "needsInterop": true
+    },
+    "react-icons/fa": {
+      "src": "../../node_modules/react-icons/fa/index.esm.js",
+      "file": "react-icons_fa.js",
+      "fileHash": "6cf3a848",
+      "needsInterop": false
+    },
+    "typewriter-effect": {
+      "src": "../../node_modules/typewriter-effect/dist/react.js",
+      "file": "typewriter-effect.js",
+      "fileHash": "9498186f",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-ATHQPBJE": {
+      "file": "chunk-ATHQPBJE.js"
+    },
+    "chunk-X6XVNPPU": {
+      "file": "chunk-X6XVNPPU.js"
+    },
+    "chunk-AY3GZSZL": {
+      "file": "chunk-AY3GZSZL.js"
+    },
+    "chunk-KDUMAST7": {
+      "file": "chunk-KDUMAST7.js"
+    },
+    "chunk-BHZAVQOK": {
+      "file": "chunk-BHZAVQOK.js"
+    }
+  }
+}
