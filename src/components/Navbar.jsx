@@ -1,19 +1,37 @@
 import { FaBars, FaTimes, FaGithub, FaLinkedin, FaYoutube, FaTwitter } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-scroll';
-
+import { Link as ScrollLink} from 'react-scroll';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     const [navbar, setNavbar] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (navbar) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'visible';
+        }
+        return () => {
+            document.body.style.overflow = 'visible';
+        };
+    }, [navbar]);
+
     const handleclick = () => {
         setNavbar(!navbar);
     }
 
     const contactHit = () => {
         navigate('/contact');
+        setNavbar(false);
+    }
+
+    const scrollToTop = () => {
+        scroll.scrollToTop();
+        setNavbar(false);
     }
     return ( 
         <>
@@ -24,13 +42,13 @@ const Navbar = () => {
             <div className='hidden md:flex'>
                 <ul className='flex space-x-7 hover:cursor-pointer'>
                     <li>
-                    <Link to='Home' smooth={true} duration={500}>Home</Link>
+                    <ScrollLink to='Home' smooth={true} duration={500}>Home</ScrollLink>
                     </li>
                     <li>
-                    <Link to='about' smooth={true} duration={500}>About</Link>
+                    <ScrollLink to='about' smooth={true} duration={500}>About</ScrollLink>
                     </li>
                     <li>
-                    <Link to='work' smooth={true} duration={500}>Work</Link>
+                    <ScrollLink to='work' smooth={true} duration={500}>Work</ScrollLink>
                     </li>
                     <button onClick={contactHit}>Contact</button>
                 </ul>
@@ -40,10 +58,10 @@ const Navbar = () => {
                     { !navbar ? <FaBars size={20}/> : <FaTimes/>}
                 </div>
 
-                <div className={!navbar ?  'hidden' :  'list-none absolute top-0 left-0 w-full h-screen bg-blue-950 flex flex-col justify-center items-center text-blue-200 hover:cursor-pointer'}>
-                    <li className='py-6 text-3xl'>Home</li>
-                    <li className='py-6 text-3xl'>About</li>
-                    <li className='py-6 text-3xl'>Work</li>
+                <div className={!navbar ?  'hidden' :  'fixed top-0 left-0 w-full h-screen bg-blue-950 flex flex-col justify-center items-center text-blue-200'}>
+                    <ScrollLink to='Home' className='hover:cursor-pointer py-6 text-3xl' onClick={scrollToTop}>Home</ScrollLink>
+                    <ScrollLink to='about' className='hover:cursor-pointer py-6 text-3xl' onClick={handleclick}>About</ScrollLink>
+                    <ScrollLink to='work' className='hover:cursor-pointer py-6 text-3xl' onClick={handleclick}>Work</ScrollLink>
                     <button onClick={contactHit} className='py-6 text-3xl'>Contact</button>
                 </div>
 
