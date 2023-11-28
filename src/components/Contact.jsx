@@ -44,7 +44,7 @@ const Contact = () => {
     } catch (err) {
       console.error(err);
       setisSubmitted(false);
-      setError("An unexpected error occurred. Please try again."); 
+      
     } finally {
       setIsLoading(false);
     }
