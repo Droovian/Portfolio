@@ -9,7 +9,8 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); 
 
