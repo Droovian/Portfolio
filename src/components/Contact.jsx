@@ -29,7 +29,7 @@ const Contact = () => {
 
       console.log("Response Status:", response.status);
 
-      if (response.ok) {
+      if (response.status === 200) {
         console.log("Form submitted successfully!");
         setisSubmitted(true);
         setError(null);
@@ -44,13 +44,9 @@ const Contact = () => {
     } catch (err) {
       console.error(err);
       setisSubmitted(false);
-      setError("Form submission failed. Please try again.");
+      setError("An unexpected error occurred. Please try again."); 
     } finally {
-      // Wait for a short period before setting the timer
-      setTimeout(() => {
-        setTimer(true);
-        setIsLoading(false);
-      }, 2000); // Adjust the delay as needed
+      setIsLoading(false);
     }
   };
 
@@ -71,11 +67,10 @@ const Contact = () => {
               This is taking longer than expected...
             </p>
           ) : null}
-          {isSubmitted ? (
-            <p className="text-blue-300 mx-auto">Form submitted successfully!</p>
-          ) : (
-            <p className="text-red-500 mx-auto">{error}</p>
-          )}
+          {isSubmitted ? <p className="text-blue-300 mx-auto">Form submitted successfully!</p> : '' }
+        
+            { error && <p className="text-red-500 mx-auto">{error}</p> }
+          
           <form
             action="https://formsubmit.co/dde486e9072e97fb65b8dcd3ae9ab3f2"
             method="post"
