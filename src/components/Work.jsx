@@ -8,7 +8,7 @@ const Work = ({ projects }) => {
             <div className="max-w-[1000px] mx-auto p-8 flex flex-col justify-center">
                 <div className='mt-32 mb-5'>
                     <p className="text-4xl font-bold inline border-b-4 border-blue-500">My Work</p>
-                    <p className="mt-3">Here are some projects I have worked on so far</p>
+                    <p className="mt-3 font-semibold">Here are some projects I have worked on so far</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 mt-8">
                     {projects.map((project, index) => (
