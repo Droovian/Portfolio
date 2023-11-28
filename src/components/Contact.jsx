@@ -9,54 +9,48 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); 
+  const formWait = () => {
+    setTimeout(() => {
+      setTimer(true);
+    }, 7000);
+  };
 
-    const startTime = new Date();
-
+  const handleSubmit = async () => {
+    formWait();
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://formsubmit.co/dde486e9072e97fb65b8dcd3ae9ab3f2', {
-        method: 'post',
-        signal: controller.signal, 
-      });
+      const response = await fetch(
+        "https://formsubmit.co/dde486e9072e97fb65b8dcd3ae9ab3f2",
+        {
+          method: "post",
+        }
+      );
 
-      console.log('Response Status:', response.status);
-
-      clearTimeout(timeoutId); // Clear the timeout if the request completes before the timeout
-
-      const endTime = new Date();
-      const elapsedTime = endTime - startTime;
+      console.log("Response Status:", response.status);
 
       if (response.ok) {
-        console.log('Form submitted successfully!');
+        console.log("Form submitted successfully!");
         setisSubmitted(true);
         setError(null);
       } else {
         const errorMessage = await response.text();
-        console.error(`Form submission failed. Status: ${response.status}, Message: ${errorMessage}`);
-
-        if (elapsedTime > 5000) {
-          setTimer(true);
-        }
-
+        console.error(
+          `Form submission failed. Status: ${response.status}, Message: ${errorMessage}`
+        );
         setisSubmitted(false);
-        setError('Form submission failed. Please try again.');
+        setError("Form submission failed. Please try again.");
       }
     } catch (err) {
-      if (err.name === 'AbortError') {
-        console.error('Form submission timed out. Please try again.');
-        setTimer(true);
-      } else {
-        console.error(err);
-        setisSubmitted(false);
-        setError('Form submission failed. Please try again.');
-      }
+      console.error(err);
+      setisSubmitted(false);
+      setError("Form submission failed. Please try again.");
     } finally {
-      setIsLoading(false);
+      // Wait for a short period before setting the timer
+      setTimeout(() => {
+        setTimer(true);
+        setIsLoading(false);
+      }, 2000); // Adjust the delay as needed
     }
   };
 
@@ -69,9 +63,13 @@ const Contact = () => {
       </div>
       <div className="flex h-screen">
         <div className="mt-10 w-full flex flex-col justify-center items-center">
-          <h1 className="font-bold text-4xl border-b-4 border-blue-500 text-gray-300 mb-3">Contact</h1>
+          <h1 className="font-bold text-4xl border-b-4 border-blue-500 text-gray-300 mb-3">
+            Contact
+          </h1>
           {timer ? (
-            <p className="text-blue-300 mx-auto">This is taking longer than expected...</p>
+            <p className="text-blue-300 mx-auto">
+              This is taking longer than expected...
+            </p>
           ) : null}
           {isSubmitted ? (
             <p className="text-blue-300 mx-auto">Form submitted successfully!</p>
@@ -85,9 +83,31 @@ const Contact = () => {
             encType="multipart/form-data"
             onSubmit={handleSubmit}
           >
-            <input type="text" name="name" className="rounded-md outline-none p-2 bg-gray-200" autoComplete="off" placeholder="Name" required />
-            <input type="email" name="email" className="rounded-md outline-none p-2 bg-gray-200 " autoComplete="off" placeholder="Email" required />
-            <textarea name="message" id="" cols="30" rows="15" placeholder="Message" className="shadow-lg rounded-md outline-none p-2 bg-gray-200" required></textarea>
+            <input
+              type="text"
+              name="name"
+              className="rounded-md outline-none p-2 bg-gray-200"
+              autoComplete="off"
+              placeholder="Name"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              className="rounded-md outline-none p-2 bg-gray-200 "
+              autoComplete="off"
+              placeholder="Email"
+              required
+            />
+            <textarea
+              name="message"
+              id=""
+              cols="30"
+              rows="15"
+              placeholder="Message"
+              className="shadow-lg rounded-md outline-none p-2 bg-gray-200"
+              required
+            ></textarea>
             <button
               type="submit"
               className="bg-transparent w-32 mx-auto text-gray-200 px-4 py-1 border hover:bg-blue-500 hover:border-blue-500"
@@ -96,7 +116,7 @@ const Contact = () => {
               Message
             </button>
             {isLoading ? (
-              <Box sx={{ width: '100%' }}>
+              <Box sx={{ width: "100%" }}>
                 <LinearProgress />
               </Box>
             ) : null}
